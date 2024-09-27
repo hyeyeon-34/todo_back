@@ -56,7 +56,7 @@ app.post('/chat', (req, res) => {
 
 // Spawn the Python process with the correct argument
     const result = spawn(pythonPath, [scriptPath, sendedQuestion]);
-    // output = '';
+      // output = '';
     // net.stdout.on('data', function(data) { 
     //     output += data.toString()
     // })
