@@ -161,7 +161,7 @@ app.post('/chat', (req, res)=>{
 
 app.post('/book', (req, res) => {
   try {
-    const sendedQuestion = req.body.question; // 질문을 요청 본문에서 가져옴
+    const sendedQuestion = req.body.query; // 질문을 요청 본문에서 가져옴
 
     // book.py 스크립트의 절대 경로
     const scriptPath = path.join(__dirname, 'book.py');
