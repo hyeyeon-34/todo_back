@@ -42,7 +42,7 @@ sys.stderr = io.TextIOWrapper(sys.stderr.detach(), encoding='utf-8')
 #             return []
         
 
-loader = DirectoryLoader("./chat/data", glob="*.txt", loader_cls=TextLoader) # 경로, 타입, 사용 함수
+loader = DirectoryLoader("./data", glob="*.txt", loader_cls=TextLoader) # 경로, 타입, 사용 함수
 documents = loader.load()
 # print(len(documents))
 
@@ -134,8 +134,8 @@ rag_chain = (
 
 
 from langchain_teddynote.messages import stream_response
-
-received_question = sys.argv[1]
+# received_question = "서울형 뉴딜 일자리에 대해 알려주세요"
+received_question = sys.argv[1] # 노드에서 받은 질문
 # print("질문 : ", received_question)
 
 answer = rag_chain.stream(received_question)

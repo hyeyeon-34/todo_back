@@ -36,10 +36,10 @@ jobs:
 
 
       # Set up Python environment
-      - name: Set up Python 3.12.6
+      - name: Set up Python 3.12.4
         uses: actions/setup-python@v4
         with:
-          python-version: '3.12.6'
+          python-version: '3.12.4'
 
 
       # Create and activate Python virtual environment
@@ -57,6 +57,7 @@ jobs:
 
 
       - run: pm2 restart BackendAPI
+
 
 
 
