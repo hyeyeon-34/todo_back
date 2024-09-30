@@ -158,3 +158,42 @@ app.post('/chat', (req, res)=>{
 //     return res.status(500).json({ error: error.message });
 //   }
 // })
+
+app.post('/book', (req, res) => {
+  try {
+    const sendedQuestion = req.body.question; // 질문을 요청 본문에서 가져옴
+
+    // book.py 스크립트의 절대 경로
+    const scriptPath = path.join(__dirname, 'book.py');
+    
+    // Python 실행 경로
+    const pythonPath = path.join(__dirname, 'venv', 'bin', 'python3');
+
+    // Python 프로세스 시작
+    const result = spawn(pythonPath, [scriptPath, sendedQuestion]);
+
+    let responseData = '';
+
+    // Python 스크립트의 stdout에서 데이터 수신
+    result.stdout.on('data', (data) => {
+      responseData += data.toString();
+    });
+
+    // 에러 처리
+    result.stderr.on('data', (data) => {
+      console.error(`stderr: ${data}`);
+      res.status(500).json({ error: data.toString() });
+    });
+
+    // 자식 프로세스 종료 이벤트 처리
+    result.on('close', (code) => {
+      if (code === 0) {
+        res.status(200).json({ answer: responseData }); // 성공 시 응답
+      } else {
+        res.status(500).json({ error: `Child process exited with code ${code}` });
+      }
+    });
+  } catch (error) {
+    return res.status(500).json({ error: error.message });
+  }
+});
