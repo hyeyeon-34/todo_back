@@ -7,7 +7,6 @@ from langchain_community.document_loaders import DirectoryLoader
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain_openai import OpenAIEmbeddings
 from langchain.schema import Document
-
 # CSV 파일 로드
 df = pd.read_csv('books1000.csv')
 
@@ -52,6 +51,7 @@ texts = text_splitter.split_documents(documents)
 embedding = OpenAIEmbeddings()
 
 # Chroma 벡터 DB에 분할된 문서와 임베딩을 추가합니다.
+
 vectordb = Chroma.from_documents(documents=texts, embedding=embedding)
 # vectordb = Chroma.from_documents(documents=text, embedding=embedding)
 
@@ -72,3 +72,7 @@ if len(docs) > 0:
     print("-" * 50)
 else:
     print("유사한 책을 찾지 못했습니다.")
+
+
+# print(f"Documents: {texts}")
+# print(f"Embedding: {embedding}")

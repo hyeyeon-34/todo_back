@@ -8,3 +8,4 @@ python-dotenv>=1.0.1
 tiktoken>=0.7.0
 langchain-teddynote>=0.0.34
 pandas>=2.2.2
+chromadb>=0.5.11
