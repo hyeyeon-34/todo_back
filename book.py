@@ -59,7 +59,7 @@ vectordb = Chroma.from_documents(documents=texts, embedding=embedding)
 retriever = vectordb.as_retriever()
 
 # 검색어를 통해 관련된 문서를 가져옵니다 (Author 기반)
-query = "James Patterson"
+query = "William Anderson"
 docs = retriever.invoke(query)
 
 # 검색된 문서의 개수 출력
